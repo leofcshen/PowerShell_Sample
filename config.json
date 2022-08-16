@@ -1,0 +1,21 @@
+{
+  "DB": {
+    "PRD": {
+      "ENV": "PRD",
+      "Host": "",
+      "DBName": "",
+      "Username": "",
+      "Password": ""
+    },
+    "TEST": {
+      "ENV": "TEST",
+      "Host": "",
+      "DBName": "",
+      "Username": "",
+      "Password": ""
+    }
+  },
+  "link1": "https://www.google.com",
+  "link2": "https://www.apple.com",
+  "link3": "https://www.microsoft.com"
+}
