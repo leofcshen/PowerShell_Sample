@@ -46,8 +46,9 @@ $list = @(
 );
 
 foreach ($item in $list) {
-	# $Script = "Write-Output ('Hello-Dynamic-Function_with Description:$($item.Description)')"
-	$Script = 'Write-Output ("Hello-Dynamic-Function_with Description:$($item.Description)")'
+	$Script = "Write-Output ('Hello-Dynamic-Function_with Description:$($item.Description)')"
+	# 下面寫法出來的值異常
+	# $Script = 'Write-Output ("Hello-Dynamic-Function_with Description:$($item.Description)")'
 	Add-DynamicFunction -FuncName $item.FuncName -FuncAction $Script
 }
 
@@ -55,6 +56,6 @@ foreach ($item in $list) {
 # 方法一
 foreach ($item in $list) { &($item.FuncName) }
 # 方法二
-$list.ForEach({ $_.FuncName; &($_.FuncName) })
+$list.ForEach({ &($_.FuncName) })
 # 方法三
-$list | ForEach-Object { $_.FuncName; &($_.FuncName) }
+$list | ForEach-Object { &($_.FuncName) }
