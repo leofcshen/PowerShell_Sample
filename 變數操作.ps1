@@ -21,3 +21,8 @@ Get-Variable "MyVariable" -ValueOnly
 
 # 顯示變數名稱
 Get-Variable MyVariable | Select-Object -ExpandProperty Name
+
+$aa = '123'
+Get-Variable aa | Select-Object -ExpandProperty Name
+
+Get-Variable -Name "aa" -ValueOnly
