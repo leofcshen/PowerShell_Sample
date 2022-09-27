@@ -26,3 +26,11 @@ $FileExist = Test-Path -Path $LogFolder -PathType Container
 if (!$FileExist) {
 	New-Item -ItemType Directory -Path $LogFolder
 }
+# 刪除資料夾下所有東西
+Get-ChildItem -Path $path -Recurse | Foreach-object { Remove-item -Recurse -path $_.FullName }
+
+# 刪除資料夾下所有空資料夾
+Get-ChildItem -Path $path -Recurse | Where-Object { (Get-ChildItem $_.FullName).Count -eq 0 } | Foreach-object { Remove-item -Recurse -path $_.FullName }
+
+# 刪除資料夾
+Remove-Item $path -Recurse
