@@ -43,7 +43,7 @@ Function Copy-Folder {
 	}
 
 	# 開始複製檔案
-	foreach ($File in $FileList ) {
+	foreach ($File in $FileList) {
 		$Filename = $File.Fullname.tolower().replace($Source, '')
 		$DestinationFile = $Destination + $Filename
 		$Percent = $Done / $Total * 100
