@@ -1,3 +1,7 @@
+# 功能說明
+
+以今天日期 `FolderName_yyyyMMdd` 的名稱備份資料夾，如果備份資料夾已存在可選擇是否再備份至 `FolderName_yyyyMMdd_Index`，`Index` 從 1 開始累加。
+
 # 使用說明
 
 > PowerShell 2.0 請使用 2.0_Version

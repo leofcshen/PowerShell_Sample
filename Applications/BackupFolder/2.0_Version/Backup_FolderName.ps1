@@ -1,4 +1,4 @@
-# 自訂備份位置
+﻿# 自訂備份位置
 $BackupBase = "D:\User\Desktop\Backup"
 
 Function Copy-WithProgress {
