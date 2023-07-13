@@ -49,7 +49,13 @@ Function Copy-Folder {
 	foreach ($File in $FileList) {
 		$Filename = $File.Fullname.tolower().replace($Source, '')
 		$DestinationFile = $Destination + $Filename
-		$Percent = $Done / $Total * 100
+		
+		if ($Total -eq 0) {
+			$Percent = 100
+		} else {
+			$Percent = $Done / $Total * 100
+		}
+		
 		$ProgressActivity = "來源 >>> '$source' 位置 >>> '$Destination'"
 		Write-Progress -Activity $ProgressActivity -Status "複製 $Filename" -PercentComplete $Percent -CurrentOperation "$Type，$($Percent.ToString("f2"))% Finished"
 		Copy-Item $File.FullName -Destination $DestinationFile
@@ -71,7 +77,7 @@ try {
 	}
 
 	$Current = $MyInvocation.MyCommand
-	$TargetFolerName = ($Current.name.Replace(".ps1", "") -split "_")[1]
+	$TargetFolerName = $Current.name.Replace("Backup_", "").Replace(".ps1", "")
 	$TargetFolerPath = $Current.Path.Replace("Backup_", "").Replace(".ps1", "")
 	$Today = Get-Date -Format "yyyyMMdd"
 	$IsRunBackup = $true
@@ -114,6 +120,8 @@ try {
 		}
 
 		$BackupDestination = "${BackupBase}\${BackupFolderNewName}"
+		New-Item -ItemType Directory -Path $BackupDestination
+		
 		Write-Host "備份開始"
 		Write-Host "備份來源 >>> $TargetFolerPath"
 		Write-Host "修份大小 >>> $SizeInfo"
