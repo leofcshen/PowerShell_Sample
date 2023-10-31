@@ -118,3 +118,17 @@ function Check-IsRunTime {
 	
 	return $isRunTime
 }
+
+function GetConfig {
+	param (
+		[string]$ConfigPath
+	)
+	
+	$ConfigExist = Test-Path -Path $ConfigPath -PathType Leaf
+	# 引用設定檔
+	if (!$ConfigExist) { throw "$ConfigPath 設定檔不存在"	}
+	$Config = Get-Content -Path $ConfigPath | ConvertFrom-Json
+	# 引用腳本
+	#. $Config.BaseScript
+	return $Config
+}
