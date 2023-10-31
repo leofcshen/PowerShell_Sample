@@ -97,3 +97,24 @@ function Test-Http {
 	$urlTestColor = $is200 ? "Green" : "Red"
 	Write-Host (" " * 21 + $url.PadRight(28, ' ') + " " + $urlTest) -ForegroundColor $urlTestColor
 }
+
+function Check-IsRunTime {
+	param (
+		[PSCustomObject]$RunTime
+	)
+	
+	$isRunTime = $false
+	# 獲取當前日期和時間
+	$now = Get-Date
+	# 獲取當前星期
+	$dayOfWeek = $now.DayOfWeek
+	# 獲取當前時間
+	$timeNow = [int]($now.ToString("HHmm"))
+	# 取得今天星期 X 的設定
+	$TodaySetting = $RunTime | Where-Object { $_.DayOfWeek -eq $dayOfWeek }
+	if ($TodaySetting.Enable -and $timeNow -ge $TodaySetting.StartTime -and $timeNow -le $TodaySetting.EndTime) {
+		$isRunTime = $true
+	}
+	
+	return $isRunTime
+}
