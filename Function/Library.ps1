@@ -52,3 +52,17 @@ function Check-IsRunTime {
 	
 	return $isRunTime
 }
+
+function Show-Error {
+	Write-Host "!!!!!! 發生錯誤 !!!!!" -BackgroundColor "Red"
+	Write-Host $_.Exception.Message -ForegroundColor "Red"
+	Write-Host $_.ScriptStackTrace
+	Write-Host "!!!!!!!!!!!!!!!!!!!!!"
+}
+
+function Show-End {
+	Write-Host
+	Write-Host "執行完畢" -ForegroundColor "Green"
+	Write-Host
+	if($PauseEnd) { Pause }
+}
