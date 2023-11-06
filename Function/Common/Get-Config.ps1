@@ -2,12 +2,10 @@
 	.SYNOPSIS
 		取得 Config 物件
 #>
-function Get-Config {
+function Get-ConfigX {
 	param (
 		[string]$JsonPath
 	)
-	
-	$Type = "自訂變數"
 	
 	if(!$JsonPath) {
 		$Type = "環境變數 Env:PS_Config"

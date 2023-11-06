@@ -2,7 +2,7 @@
 	.SYNOPSIS
 		取得 Library 路徑
 #>
-function Get-LibraryPath {
+function Get-LibraryPathX {
 	param (
 		[string]$LibraryPath
 	)
