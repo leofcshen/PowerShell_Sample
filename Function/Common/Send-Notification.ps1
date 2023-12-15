@@ -12,26 +12,26 @@ function Send-Notification {
 	Add-Type -AssemblyName System.Windows.Forms
 
 	# 創建通知物件
-	$balloon = New-Object System.Windows.Forms.NotifyIcon
+	$notify = New-Object System.Windows.Forms.NotifyIcon
 
 	# 設定圖示
 	switch ($IconType) {
-		"Warning" { $balloon.Icon = [System.Drawing.SystemIcons]::Warning }
-		"Error" { $balloon.Icon = [System.Drawing.SystemIcons]::Error }
-		"Question" { $balloon.Icon = [System.Drawing.SystemIcons]::Question }
-		"Hand" { $balloon.Icon = [System.Drawing.SystemIcons]::Hand }
-		default { $balloon.Icon = [System.Drawing.SystemIcons]::Information }
+		"Warning" { $notify.Icon = [System.Drawing.SystemIcons]::Warning }
+		"Error" { $notify.Icon = [System.Drawing.SystemIcons]::Error }
+		"Question" { $notify.Icon = [System.Drawing.SystemIcons]::Question }
+		"Hand" { $notify.Icon = [System.Drawing.SystemIcons]::Hand }
+		default { $notify.Icon = [System.Drawing.SystemIcons]::Information }
 	}
 
 	# 設定標題和內容
-	$balloon.BalloonTipTitle = $Title
-	$balloon.BalloonTipText = $Text
+	$notify.BalloonTipTitle = $Title
+	$notify.BalloonTipText = $Text
 	
 	# 顯示通知 
-	$balloon.Visible = $true
-	$balloon.ShowBalloonTip(0)
+	$notify.Visible = $true
+	$notify.ShowBalloonTip(0)
     
-	# 延時後清除
-	Start-Sleep -Seconds 3
-	$balloon.Dispose()
+	# 延時後清除不加這行圖示不知道為什麼不會顯示
+	Start-Sleep -Seconds 1
+	$notify.Dispose()
 }
