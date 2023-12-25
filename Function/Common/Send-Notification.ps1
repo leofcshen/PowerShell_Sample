@@ -6,7 +6,8 @@ function Send-Notification {
 	param (
 		[string]$Title,
 		[string]$Text,
-		[string]$IconType = "Information"
+		[string]$IconType = "Information",
+		[int]$Intervals = 5
 	)
 	# 加載 Windows UI 通知的必要組件
 	Add-Type -AssemblyName System.Windows.Forms
@@ -32,6 +33,6 @@ function Send-Notification {
 	$notify.ShowBalloonTip(0)
     
 	# 延時後清除不加這行圖示不知道為什麼不會顯示
-	Start-Sleep -Seconds 1
+	Start-Sleep -Seconds $Intervals
 	$notify.Dispose()
 }
