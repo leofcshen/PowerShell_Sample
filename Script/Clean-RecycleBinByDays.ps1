@@ -8,7 +8,7 @@ $limit = (Get-Date).AddDays(-$days)
 $recycle = (New-Object -ComObject Shell.Application).NameSpace(0xa)
 
 $recycle.Items() | ForEach-Object {
-	if($_.ExtendedProperty("System.Recycle.DateDeleted") -lt $limit){
-		Remove-Item $_.Path -Recurse -Force
-	}
+  if($_.ExtendedProperty("System.Recycle.DateDeleted") -lt $limit){
+    Remove-Item $_.Path -Recurse -Force
+  }
 }
